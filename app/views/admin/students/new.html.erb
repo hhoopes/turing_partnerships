@@ -1,0 +1,15 @@
+<%= form_for @student, url: admin_students_path do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :cohort %>
+  <%= f.text_field :cohort %>
+
+  <%= f.submit %>
+
+<% end %>
