@@ -8,7 +8,11 @@ class StudentsController <ApplicationController
   end
 
   def edit
-    @student = Student.find(params[:id])
+    if params[:id].to_i != current_user.id
+      render file: 'public/404'
+    else
+      @student = Student.find(params[:id])
+    end
   end
 
   def update

@@ -7,7 +7,7 @@
   </tr>
 <% @students.each do |student| %>
 <tr>
-  <td><%= student.name %></td>
+  <td><%= link_to student.name, student_path(student)%></td>
   <td> <%= student.username %></td>
   <td> <%= student.cohort %></td>
 </tr
