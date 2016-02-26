@@ -1,4 +1,3 @@
-<% if @student == current_user %>
   <h1>Your Profile</h1>
  <p>
    Name: <%= @student.name %>
@@ -6,4 +5,12 @@
  <p>
    Cohort: <%= @student.cohort %>
  </p>
+
+ <!--  Their projects -->
+ <!--  For each project, inside current user loop, show add partners-->
+
+
+<% if @student.id == current_user.id %>
+  <%= link_to "Edit Profile", edit_student_path(@student) %>
+  <%= link_to new_student_project_path %>
 <% end %>
