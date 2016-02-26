@@ -7,9 +7,8 @@ class UserLogsInTest < ActionDispatch::IntegrationTest
 
     visit '/login'
     fill_in "Username", with: "heidi"
-    # fill_in "Name", with: "Heidi"
     fill_in "Password", with: "password"
-    # fill_in "Module", with: "2"
+
     click_on "Log In"
     # ApplicationController.any_instance.stubs(:current_user).returns(:current_user)
     assert_equal student_path(user), current_path

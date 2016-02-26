@@ -1,0 +1,9 @@
+<% if @student == current_user %>
+  <h1>Your Profile</h1>
+ <p>
+   Name: <%= @student.name %>
+ </p>
+ <p>
+   Cohort: <%= @student.cohort %>
+ </p>
+<% end %>
