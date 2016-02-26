@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <th> Name </th>
+    <th> Module </th>
+  </tr>
+  <%= @projects.each do |project| %>
+    <tr>
+      <td> project.name </td>
+      <td> project.module </td>
+    </tr>
+  <% end %>
+</table>

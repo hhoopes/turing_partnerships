@@ -2,6 +2,7 @@ require 'test_helper'
 
 class AdminDeletesAProjectTest < ActionDispatch::IntegrationTest
   test "admin deletes a project" do
+    skip
     admin = Student.create(username: "heidi", password: "password", role: 1, name: "Heidi", cohort: "1511")
     project = Project.new(name: "Insanely Hard Project", module: "2")
 
