@@ -10,20 +10,30 @@ class Admin::StudentsController < Admin::BaseController
     else
       render :new
     end
+  end
 
-    def index
-      @students = Student.all
-    end
+  def index
+    @students = Student.all
+  end
 
-    def show
-      @student = Student.find(params[:id])
-    end
+  def show
+    @student = Student.find(params[:id])
+  end
 
-    def destroy
-      @student = Student.find(params[:id])
-      @student.destroy
-      redirect_to admin_students_path
-    end
+  def destroy
+    @student = Student.find(params[:id])
+    @student.destroy
+    redirect_to admin_students_path
+  end
+
+  def edit
+    @student = Student.find(params[:id])
+  end
+
+  def update
+    @student = Student.find(params[:id])
+    @student.update(student_params)
+    redirect_to admin_students_path
   end
 
   private
