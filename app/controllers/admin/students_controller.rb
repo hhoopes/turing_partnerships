@@ -14,6 +14,16 @@ class Admin::StudentsController < Admin::BaseController
     def index
       @students = Student.all
     end
+
+    def show
+      @student = Student.find(params[:id])
+    end
+
+    def destroy
+      @Student.find(params[:id])
+      @student.destroy
+      redirect_to admin_students_path
+    end
   end
 
   private
