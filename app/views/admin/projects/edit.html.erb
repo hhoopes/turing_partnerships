@@ -1,0 +1,7 @@
+<%= form_for @project, url: admin_project_path do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.label :module %>
+<%= f.text_field :module %>
+<%= f.submit %>
+<% end %>
