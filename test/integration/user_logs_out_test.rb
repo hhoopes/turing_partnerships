@@ -5,7 +5,7 @@ class UserLogsOutTest < ActionDispatch::IntegrationTest
     user = Student.create(username: "heidi", password: "password", name: "Heidi", cohort: "1511")
 
     visit '/login'
-    click_on "Log In"
+    # click_on "Log In"
     fill_in "Username", with: "heidi"
     fill_in "Password", with: "password"
     click_on "Log In"

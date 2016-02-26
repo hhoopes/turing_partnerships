@@ -5,9 +5,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @student = Student.find_by(username: params[:session][:username])
-    if @student && @student.authenticate(params[:session][:password])
-      session[:user_id] = @student.id
+    @student = Student.find_by(username: params[:sessions][:username])
+    if @student && @student.authenticate(params[:sessions][:password])
+      session[:student_id] = @student.id
       redirect_to student_path(@student)
     else
       render :new
