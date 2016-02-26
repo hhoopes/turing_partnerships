@@ -1,14 +1,14 @@
 <table>
   <tr>
-    <th> Name </th>
-    <th> Username </th>
-    <th> Cohort </th>
+    <th>Name</th>
+    <th>Username</th>
+    <th>Cohort</th>
   </tr>
-  <% @students.each do |student| %>
-    <tr>
-      <td><%= student.name %></td>
-      <td><%= student.username %></td>
-      <td><%= student.cohort %></td>
-    </tr>
+  <% @students.each do |student|%>
+  <tr>
+    <th><%= student.name %></th>
+    <th><%= student.username %></th>
+    <th><%= student.cohort %></th>
+  </tr>
   <% end %>
 </table>

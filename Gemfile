@@ -39,6 +39,7 @@ group :development, :test do
   gem 'shoulda', '~> 3.5'
   gem 'shoulda-matchers', '~> 2.0'
   gem 'mocha'
+  gem 'database_cleaner'
 end
 
 group :development do

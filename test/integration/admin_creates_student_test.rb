@@ -14,6 +14,7 @@ class AdminCreatesStudentTest < ActionDispatch::IntegrationTest
     fill_in "Name", with: "Adrienne"
     fill_in "Cohort", with: "1511"
     click_on "Create Student"
+
     assert page.has_content?("adrienne")
     assert page.has_content?("Adrienne")
     assert page.has_content?("1511")
