@@ -25,7 +25,7 @@ class AdminEditsAStudentTest < ActionDispatch::IntegrationTest
     fill_in "Password", with: "password"
     fill_in "Name", with: "AdrienneD"
     fill_in "Cohort", with: "1602"
-    click_on "Edit Student"
+    click_on "Update Student"
 
     assert page.has_content?("adriennenew")
     assert page.has_content?("AdrienneD")
