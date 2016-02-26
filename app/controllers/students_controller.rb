@@ -2,7 +2,11 @@ require 'test_helper'
 
 class StudentsController <ApplicationController
   def show
-    @student = current_user
+    if params[:id].to_i != current_user.id
+      render file: '/public/404'
+    else
+      @student = current_user
+    end
   end
 
   def index
