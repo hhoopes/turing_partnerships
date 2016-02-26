@@ -20,7 +20,7 @@ class Admin::StudentsController < Admin::BaseController
     end
 
     def destroy
-      @Student.find(params[:id])
+      @student = Student.find(params[:id])
       @student.destroy
       redirect_to admin_students_path
     end
