@@ -17,4 +17,14 @@ class AdminCreatesAProjectTest < ActionDispatch::IntegrationTest
     assert page.has_content?("2")
   end
 
+  test "non-admin cannot create projects" do
+    student = Student.create(username: "heidi", password: "password", name: "Heidi", cohort: "1511")
+
+    ApplicationController.any_instance.stubs(:current_user).returns(student)
+
+    visit new_admin_project_path
+
+    assert page.has_content?("The page you were looking for doesn't exist")
+  end
+
 end

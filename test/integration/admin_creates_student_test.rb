@@ -27,6 +27,5 @@ class AdminCreatesStudentTest < ActionDispatch::IntegrationTest
     visit new_admin_student_path
 
     assert page.has_content?("The page you were looking for doesn't exist")
-
   end
 end
