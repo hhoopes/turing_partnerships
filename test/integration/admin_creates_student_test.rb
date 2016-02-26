@@ -18,4 +18,15 @@ class AdminCreatesStudentTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Adrienne")
     assert page.has_content?("1511")
   end
+
+  test "non-admin sees error page" do
+    student = Student.create(username: "heidi", password: "password", name: "Heidi", cohort: "1511")
+
+    ApplicationController.any_instance.stubs(:current_user).returns(student)
+
+    visit new_admin_student_path
+
+    assert page.has_content?("The page you were looking for doesn't exist")
+
+  end
 end
