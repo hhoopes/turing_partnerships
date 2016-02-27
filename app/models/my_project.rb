@@ -3,15 +3,17 @@ class MyProject < ActiveRecord::Base
   belongs_to :student
   belongs_to :partnership
 
-  def self.add_partnerships(student, my_project_params, my_project, all_students)
-    my_project.update(partnership_id: Partnership.create.id)
+  def self.add_partnerships(my_project_params, my_project, all_students)
+    # ActiveRecord::Base.transaction do 
+    partnership = Partnership.create
+    partnership.my_projects << my_project
     all_students.each do |partner|
       partner_student = Student.find(partner)
-      matching_project = partner_student.my_projects.where(project_id: student.my_projects.last.project_id)
-      if !matching_project.last
-        matching_project << partner_student.my_projects.create(my_project_params)
+      matching_project = partner_student.my_projects.find_by(project_id: my_project.id)
+      if !matching_project
+        matching_project = partner_student.my_projects.create(my_project_params)
       end
-      matching_project.last.update(partnership_id: Partnership.last.id)
+      partnership.my_projects << matching_project
     end
   end
 end
