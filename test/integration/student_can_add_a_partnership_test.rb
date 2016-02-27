@@ -71,4 +71,26 @@ class StudentCanAddPartnershipTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Heidi")
     assert page.has_content?("Rails Mini Project")
   end
+
+  test "student adds multiple partners and view opposite student" do
+    student_1 = Student.create(username: "adrienne", password: "password", name: "Adrienne", cohort: "1511")
+    student_2 = Student.create(username: "heidi", password: "password", name: "Heidi", cohort: '1511')
+    Student.create(username: "erinna", password: "password", name: "Erinna", cohort: '1511')
+    Student.create(username: "justin", password: "password", name: "Justin", cohort: '1511')
+
+    project = Project.create(name: "Rails Mini Project", module: "2")
+
+    ApplicationController.any_instance.stubs(:current_user).returns(student_1)
+    visit student_path(student_1)
+    click_on "Add a Project to Your List"
+
+    select "Rails Mini Project"
+    check student_2.id
+    click_on "Add to My List!"
+    my_project = MyProject.last
+    visit student_my_project_path(student_2, student_2.my_projects.last)
+
+    assert page.has_content?("Adrienne")
+    assert page.has_content?("Rails Mini Project")
+  end
 end
