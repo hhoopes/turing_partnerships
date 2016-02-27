@@ -1,4 +1,10 @@
 <%= form_for [@student, @my_project] do |f| %>
   <%= select("project", :project_id, Project.all.collect {|p| [ p.name, p.id ] }, {prompt: 'Select Project'}) %>
-  <%= f.submit "Add to My List!" %>
+  <% Student.where(cohort: @student.cohort).each do |student| %>
+    <p><%= f.label student.name %>
+    <%= check_box_tag(:student_ids, student.id, false, :name => 'project[partnership][]', id: "#{student.id}") %>
+    </p>
+    <%#= check_box_tag(:song_ids, song.id, @playlist.songs.include?(song), :name => 'playlist[song_ids][]', id: "song-#{song.id}") %>
+  <% end %>
+  <p><%= f.submit "Add to My List!" %></p>
 <% end %>
