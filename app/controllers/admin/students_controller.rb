@@ -42,6 +42,6 @@ class Admin::StudentsController < Admin::BaseController
   private
 
   def student_params
-    params.require(:student).permit(:username, :password, :name, :cohort)
+    params.require(:student).permit(:username, :password, :name, :cohort, :email)
   end
 end
