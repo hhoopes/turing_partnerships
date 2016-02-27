@@ -1,6 +1,7 @@
-class StudentsController <ApplicationController
+class StudentsController < ApplicationController
+  before_action :find_student, only: [:show, :edit, :update]
+
   def show
-    @student = Student.find(params[:id])
   end
 
   def index
@@ -8,15 +9,10 @@ class StudentsController <ApplicationController
   end
 
   def edit
-    if params[:id].to_i != current_user.id
-      render file: 'public/404'
-    else
-      @student = Student.find(params[:id])
-    end
+    render file: 'public/404' if params[:id].to_i != current_user.id
   end
 
   def update
-    @student = Student.find(params[:id])
     @student.update(student_params)
     redirect_to student_path(@student)
   end
@@ -25,6 +21,10 @@ class StudentsController <ApplicationController
 
   def student_params
     params.require(:student).permit(:password, :cohort)
+  end
+
+  def find_student
+    @student = Student.find(params[:id])
   end
 
 end
