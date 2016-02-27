@@ -10,6 +10,7 @@
   <% @student.projects.each do |project| %>
     <%= project.name %>
     <%= project.module %>
+    <%= link_to "Delete", student_my_project_path(@student, project), method: :delete %>
   <% end %>
 </p>
 

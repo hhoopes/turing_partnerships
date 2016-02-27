@@ -11,6 +11,12 @@ class MyProjectsController < ApplicationController
     redirect_to student_path(@student)
   end
 
+  def destroy
+    @student = Student.find(params[:student_id])
+    MyProject.find_by(student_id: @student.id, project_id: params[:id]).destroy
+    redirect_to student_path(@student)
+  end
+
   private
 
   def my_project_params

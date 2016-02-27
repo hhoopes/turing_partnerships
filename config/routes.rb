@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :students, only: [:index, :edit, :update, :show] do
-     resources :my_projects, only: [:create, :new, :delete]
+     resources :my_projects, only: [:create, :new, :destroy]
   end
   resources :projects, only: [:index, :show]
 
