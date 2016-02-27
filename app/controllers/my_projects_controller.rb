@@ -8,13 +8,16 @@ class MyProjectsController < ApplicationController
   def create
     @student = Student.find(params[:student_id])
     my_project = @student.my_projects.create(my_project_params)
-    my_project.partnership = Partnership.create
+    Partnership.create
+    my_project.partnership_id = Partnership.last.id
     new_partnership_id = Partnership.last
     partner_students[:partnership].each do |partner|
       student = Student.find(partner)
       matching_project = student.my_projects.where(project_id: @student.my_projects.last.project_id)
       matching_project.last.update(partnership_id: new_partnership_id.id)
     end
+    require "pry"
+    binding.pry
     redirect_to student_path(@student)
   end
 

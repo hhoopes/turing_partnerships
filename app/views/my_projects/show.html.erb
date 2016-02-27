@@ -1,0 +1,4 @@
+<h1> <%= @my_project.project.name %></h1>
+<% MyProject.where(partnership_id: @my_project.partnership_id).each do |partnership| %>
+  <p><%= partnership.student.name %></p>
+<% end %>
