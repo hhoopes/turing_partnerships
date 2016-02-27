@@ -6,13 +6,21 @@
    Cohort: <%= @student.cohort %>
  </p>
 
-<p>
+<table class="table">
+  <tr>
+    <th>Project</th>
+    <th>Module</th>
+    <th></th>
+  </tr>
   <% @student.projects.each do |project| %>
-    <%= project.name %>
-    <%= project.module %>
-    <%= link_to "Delete", student_my_project_path(@student, project), method: :delete %>
+  <tr>
+    <td><%= project.name %></td>
+    <td><%= project.module %></td>
+    <td><%= link_to "Delete", student_my_project_path(@student, project), method: :delete %></td>
+  </tr>
   <% end %>
-</p>
+</table>
+
 
 
 <% if @student.id == current_user.id %>
