@@ -6,6 +6,9 @@ class Admin::StudentsController < Admin::BaseController
   def create
     @student = Student.new(student_params)
     if @student.save
+      if @student.email
+        StudentMailer.welcome_email(@student).deliver_now
+      end
       redirect_to admin_students_path
     else
       render :new

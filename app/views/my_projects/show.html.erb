@@ -1,6 +1,4 @@
 <h1> <%= @my_project.project.name %></h1>
-<%#= require "pry" %>
-<%#= binding.pry %>
 <% MyProject.where(partnership_id: @my_project.partnership_id).each do |partnership| %>
   <p><%= link_to partnership.student.name, student_path(partnership.student.id) %></p>
 <% end %>
