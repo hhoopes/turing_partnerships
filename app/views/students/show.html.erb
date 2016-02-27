@@ -14,7 +14,7 @@
   </tr>
   <% @student.projects.each do |project| %>
   <tr>
-    <td><%= project.name %></td>
+    <td><%= link_to project.name, student_my_project_path(@student, @student.my_projects.find_by(project_id: project.id).id) %></td>
     <td><%= project.module %></td>
     <td><%= link_to "Delete", student_my_project_path(@student, project), method: :delete %></td>
   </tr>
