@@ -9,7 +9,7 @@ class MyProjectsController < ApplicationController
     @my_project_params = my_project_params
     my_project = @student.my_projects.create(@my_project_params)
     if partner_students[:partnership]
-      MyProject.add_partnerships(@student, @my_project_params, my_project, partner_students[:partnership])
+      MyProject.add_partnerships(@my_project_params, my_project, partner_students[:partnership])
     end
     redirect_to student_path(@student)
   end
