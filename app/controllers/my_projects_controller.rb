@@ -11,7 +11,13 @@ class MyProjectsController < ApplicationController
     if partner_students[:partnership]
       MyProject.add_partnerships(@my_project_params, my_project, partner_students[:partnership])
     end
-    redirect_to student_path(@student)
+    if my_project.save
+      flash.notice = "Project added to your portfolio."
+      redirect_to student_path(@student)
+    else
+      flash.alert = "#{@my_project.errors.full_messages.join(", ")}"
+      render :new
+    end
   end
 
   def show
@@ -20,6 +26,7 @@ class MyProjectsController < ApplicationController
 
   def destroy
     MyProject.find_by(student_id: @student.id, project_id: params[:id]).destroy
+    flash.notice = "Project removed from your porfolio"
     redirect_to student_path(@student)
   end
 
