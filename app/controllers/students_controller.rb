@@ -14,7 +14,13 @@ class StudentsController < ApplicationController
 
   def update
     @student.update(student_params)
-    redirect_to student_path(@student)
+    if @student.save
+      flash.notice = "Successfully updated your profile"
+      redirect_to student_path(@student)
+    else
+      flash.alert = "#{@student.errors.full_messages.join(", ")}"
+      render :new
+    end
   end
 
   private
