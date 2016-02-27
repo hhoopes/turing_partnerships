@@ -16,6 +16,18 @@ ActiveRecord::Schema.define(version: 20160225215802) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "my_projects", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "student_id"
+    t.integer  "partnership_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "my_projects", ["partnership_id"], name: "index_my_projects_on_partnership_id", using: :btree
+  add_index "my_projects", ["project_id"], name: "index_my_projects_on_project_id", using: :btree
+  add_index "my_projects", ["student_id"], name: "index_my_projects_on_student_id", using: :btree
+
   create_table "partnerships", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -28,18 +40,6 @@ ActiveRecord::Schema.define(version: 20160225215802) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "student_projects", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "student_id"
-    t.integer  "partnership_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "student_projects", ["partnership_id"], name: "index_student_projects_on_partnership_id", using: :btree
-  add_index "student_projects", ["project_id"], name: "index_student_projects_on_project_id", using: :btree
-  add_index "student_projects", ["student_id"], name: "index_student_projects_on_student_id", using: :btree
-
   create_table "students", force: :cascade do |t|
     t.string   "name"
     t.string   "image"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20160225215802) do
     t.integer  "role",            default: 0
   end
 
-  add_foreign_key "student_projects", "partnerships"
-  add_foreign_key "student_projects", "projects"
-  add_foreign_key "student_projects", "students"
+  add_foreign_key "my_projects", "partnerships"
+  add_foreign_key "my_projects", "projects"
+  add_foreign_key "my_projects", "students"
 end

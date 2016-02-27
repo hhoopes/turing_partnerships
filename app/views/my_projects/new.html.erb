@@ -1,0 +1,4 @@
+<%= form_for [@student, @my_project] do |f| %>
+  <%= select("project", :project_id, Project.all.collect {|p| [ p.name, p.id ] }, {prompt: 'Select Project'}) %>
+  <%= f.submit "Add to My List!" %>
+<% end %>

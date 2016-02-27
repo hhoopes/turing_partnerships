@@ -9,9 +9,10 @@ Rails.application.routes.draw do
     resources :projects
   end
 
-  resources :students, only: [:index, :edit, :update, :show]
+  resources :students, only: [:index, :edit, :update, :show] do
+     resources :my_projects, only: [:create, :new, :delete]
+  end
   resources :projects, only: [:index, :show]
-  resources :student_projects, only: [:create, :new, :delete]
 
   root to: 'students#index'
 

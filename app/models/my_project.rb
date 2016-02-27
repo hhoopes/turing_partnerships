@@ -1,4 +1,4 @@
-class StudentProject < ActiveRecord::Base
+class MyProject < ActiveRecord::Base
   belongs_to :project
   belongs_to :student
   belongs_to :partnership

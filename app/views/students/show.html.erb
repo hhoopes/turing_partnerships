@@ -6,11 +6,15 @@
    Cohort: <%= @student.cohort %>
  </p>
 
- <!--  Their projects -->
- <!--  For each project, inside current user loop, show add partners-->
+<p>
+  <% @student.projects.each do |project| %>
+    <%= project.name %>
+    <%= project.module %>
+  <% end %>
+</p>
 
 
 <% if @student.id == current_user.id %>
   <%= link_to "Edit Profile", edit_student_path(@student) %>
-  <%= link_to new_student_project_path %>
+    <%= link_to "Add a Project to Your List", new_student_my_project_path(@student) %>
 <% end %>
