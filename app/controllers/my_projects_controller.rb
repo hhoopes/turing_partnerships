@@ -15,6 +15,9 @@ class MyProjectsController < ApplicationController
       partner_students[:partnership].each do |partner|
         student = Student.find(partner)
         matching_project = student.my_projects.where(project_id: @student.my_projects.last.project_id)
+        if !matching_project.last
+          matching_project << student.my_projects.create(my_project_params)
+        end
         matching_project.last.update(partnership_id: new_partnership_id.id)
       end
     end
