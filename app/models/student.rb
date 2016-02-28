@@ -10,6 +10,14 @@ class Student < ActiveRecord::Base
   validates :username, presence: true
   validates :password_digest, presence: true
 
+  has_attached_file :avatar, styles: {
+    favicon: '16x16>',
+    square: '200x200#',
+    medium: '300x300>'
+  }
+
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
   enum role: %w(default admin)
 
   def paired
