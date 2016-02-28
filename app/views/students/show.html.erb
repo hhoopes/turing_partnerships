@@ -21,7 +21,23 @@
   <% end %>
 </table>
 
+<div class="paired">
+  <h3>Students You Have Worked With</h3>
+  <ul>
+    <% @student.paired.each do |pair| %>
+    <li><%= pair %></li>
+    <% end %>
+  </ul>
+</div>
 
+<div class="unpaired">
+  <h3>Students You Haven't Worked With</h3>
+  <ul>
+    <% @student.unpaired.each do |pair| %>
+    <li><%= pair %></li>
+    <% end %>
+  </ul>
+</div>
 
 <% if @student.id == current_user.id %>
   <%= link_to "Edit Profile", edit_student_path(@student) %>

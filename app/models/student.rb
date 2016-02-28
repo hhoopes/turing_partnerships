@@ -6,4 +6,20 @@ class Student < ActiveRecord::Base
   has_many :partnerships, through: :my_projects
 
   enum role: %w(default admin)
+
+  def paired
+    my_projects.map do |project|
+      MyProject.where(partnership_id: project.partnership_id).map do |partner_project|
+        partner_project.student.name
+      end
+    end.flatten.uniq.delete_if { |name| name == self.name }
+  end
+
+  def unpaired
+    Student.all.select do |student|
+      !paired.include?(student.name)
+    end.map do |non_pair|
+      non_pair.name
+    end.delete_if { |name| name == self.name }
+  end
 end
