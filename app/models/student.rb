@@ -11,7 +11,9 @@ class Student < ActiveRecord::Base
   validates :username, presence: true
   validates :password_digest, presence: true
 
-  has_attached_file :avatar, styles: {
+  has_attached_file :avatar, :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+  :url => "/system/:attachment/:id/:style/:filename",
+  styles: {
     favicon: '16x16>',
     square: '200x200#',
     medium: '300x300>'
