@@ -1,5 +1,5 @@
 class Student < ActiveRecord::Base
-  attr_accessor :avatar_file_name
+  # attr_accessor :avatar_file_name
   has_secure_password
 
   has_many :my_projects
@@ -23,7 +23,6 @@ class Student < ActiveRecord::Base
     :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
   }
-
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
