@@ -81,5 +81,6 @@ test:
 production:
   <<: *default
   database: turing_partnerships_production
-  username: turing_partnerships
+  # username: turing_partnerships
+  username: adrienne
   password: <%= ENV['TURING_PARTNERSHIPS_DATABASE_PASSWORD'] %>

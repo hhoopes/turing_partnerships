@@ -6,6 +6,9 @@ class Admin::StudentsController < Admin::BaseController
   def create
     @student = Student.new(student_params)
     if @student.save
+      if !@student.email.empty?
+        StudentMailer.welcome_email(@student).deliver_now
+      end
       redirect_to admin_students_path
     else
       render :new
@@ -39,6 +42,6 @@ class Admin::StudentsController < Admin::BaseController
   private
 
   def student_params
-    params.require(:student).permit(:username, :password, :name, :cohort)
+    params.require(:student).permit(:username, :password, :name, :cohort, :email)
   end
 end
