@@ -1,4 +1,5 @@
 class Student < ActiveRecord::Base
+  attr_accessor :avatar_file_name
   has_secure_password
 
   has_many :my_projects
