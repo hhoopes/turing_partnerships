@@ -12,10 +12,28 @@ class Student < ActiveRecord::Base
 
   enum role: %w(default admin)
 
+
   def partners(my_project)
-    all_connected = my_projects.where(partnership_id: my_project.partnership_id)
+    all_connected = MyProject.where(partnership_id: my_project.partnership_id)
     all_connected.map do | my_project |
       my_project.student
     end
+  end
+
+  def paired
+    my_projects.map do |project|
+      MyProject.where(partnership_id: project.partnership_id).map do |partner_project|
+        partner_project.student.name
+      end
+    end.flatten.uniq.delete_if { |name| name == self.name }
+  end
+
+  def unpaired
+    Student.all.select do |student|
+      !paired.include?(student.name)
+    end.map do |non_pair|
+      non_pair.name
+    end.delete_if { |name| name == self.name }
+
   end
 end

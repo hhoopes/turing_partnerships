@@ -19,7 +19,10 @@ class StudentCanAddPartnershipTest < ActionDispatch::IntegrationTest
     my_project = MyProject.last
     visit student_my_project_path(student_2, my_project)
 
-    assert page.has_content?("Adrienne")
+    within(".partnership") do
+      refute page.has_content?("Heidi")
+      assert page.has_content?("Adrienne")
+    end
     assert page.has_content?("Rails Mini Project")
   end
 
