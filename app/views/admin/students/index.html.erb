@@ -6,9 +6,11 @@
   </tr>
   <% @students.each do |student|%>
   <tr>
-    <th><%= student.name %></th>
+    <th><%= link_to student.name, student %></th>
     <th><%= student.username %></th>
     <th><%= student.cohort %></th>
   </tr>
   <% end %>
 </table>
+
+<%= link_to "Add a new student", new_admin_student_path %>

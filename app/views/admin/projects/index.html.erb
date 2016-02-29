@@ -5,8 +5,11 @@
   </tr>
   <% @projects.each do |project| %>
     <tr>
-      <td><%=  project.name %></td>
+      <td><%= link_to project.name, admin_project_path(project) %></td>
       <td><%= project.module %></td>
+      <td><%= link_to "Remove Project", admin_project_path(project), method: :delete %>
     </tr>
   <% end %>
 </table>
+
+<%= link_to "Add a new project", new_admin_project_path %>

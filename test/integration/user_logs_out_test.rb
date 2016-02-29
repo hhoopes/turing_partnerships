@@ -7,8 +7,9 @@ class UserLogsOutTest < ActionDispatch::IntegrationTest
     visit '/login'
     fill_in "Username", with: "heidi"
     fill_in "Password", with: "password"
-    click_on "Log In"
-
+    within("form")  do
+      click_on "Log In"
+    end
     assert page.has_content?("Welcome, Heidi")
 
     click_on "Log Out"
