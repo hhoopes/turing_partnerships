@@ -50,6 +50,5 @@ class Student < ActiveRecord::Base
     end.map do |non_pair|
       non_pair.name
     end.delete_if { |name| name == self.name }
-
   end
 end
