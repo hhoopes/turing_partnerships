@@ -11,4 +11,11 @@ class Student < ActiveRecord::Base
   validates :password_digest, presence: true
 
   enum role: %w(default admin)
+
+  def partners(my_project)
+    all_connected = my_projects.where(partnership_id: my_project.partnership_id)
+    all_connected.map do | my_project |
+      my_project.student
+    end
+  end
 end
