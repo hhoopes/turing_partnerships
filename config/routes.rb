@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :show]
 
   root to: 'students#index'
-
+  get '/visualization', to: "analytics#visualization"
 end

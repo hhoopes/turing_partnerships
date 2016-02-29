@@ -1,6 +1,7 @@
 <h1> <%= @my_project.project.name %></h1>
 <div class="partnership">
 <% MyProject.where(partnership_id: @my_project.partnership_id).each do |partnership| %>
+  <p><%= link_to partnership.student.name, student_path(partnership.student.id) %></p>
   <% unless partnership.student.id == current_user.id%>
     <p><%= partnership.student.name %></p>
   <% end %>

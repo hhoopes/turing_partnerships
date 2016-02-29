@@ -33,6 +33,11 @@
       </div>
     </div>
       <div class="container">
+        <p class="flash">
+          <% flash.each do | type, msg | %>
+            <%= content_tag :div, msg, class: "flash_#{type}" %>
+        <% end %>
+        </p>
         <%= yield %>
     </div>
 </div>

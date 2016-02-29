@@ -36,6 +36,9 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
+
+  config.action_mailer.smtp_settings = { port: 587 }
+
   config.action_mailer.smtp_settings = {
     :address              => ENV["EMAIL_DOMAIN"],
     :port                 => ENV["EMAIL_PORT"],

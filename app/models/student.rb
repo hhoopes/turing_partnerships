@@ -28,6 +28,14 @@ class Student < ActiveRecord::Base
 
   enum role: %w(default admin)
 
+
+  def partners(my_project)
+    all_connected = MyProject.where(partnership_id: my_project.partnership_id)
+    all_connected.map do | my_project |
+      my_project.student
+    end
+  end
+
   def paired
     my_projects.map do |project|
       MyProject.where(partnership_id: project.partnership_id).map do |partner_project|
